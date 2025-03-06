@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "A4gtSGRranbLgo90zuG2oY5lMJAkyINkjk+xT5GzMqbXLDtHT2AylrwJQG/BZj/jv19Dx3YDrf0wiR4u34TwJA==",
+  "success": true,
+  "projectFilePath": "/home/zephyros/Coding/CS/TREETOPNEOCYPHER/TREETOPNEOCYPHER.csproj",
+  "expectedPackageFiles": [
+    "/home/zephyros/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.12/microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

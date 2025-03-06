@@ -1,0 +1,14 @@
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/bin/Debug/net8.0/TREETOPNEOCYPHER
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/bin/Debug/net8.0/TREETOPNEOCYPHER.deps.json
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/bin/Debug/net8.0/TREETOPNEOCYPHER.runtimeconfig.json
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/bin/Debug/net8.0/TREETOPNEOCYPHER.dll
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/bin/Debug/net8.0/TREETOPNEOCYPHER.pdb
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.GeneratedMSBuildEditorConfig.editorconfig
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.AssemblyInfoInputs.cache
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.AssemblyInfo.cs
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.csproj.CoreCompileInputs.cache
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.dll
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/refint/TREETOPNEOCYPHER.dll
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.pdb
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.genruntimeconfig.cache
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/ref/TREETOPNEOCYPHER.dll
