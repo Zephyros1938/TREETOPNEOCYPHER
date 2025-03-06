@@ -7,7 +7,8 @@ public class Program
     static bool copyToClipBoard = false;
     public static int Main(string[] args)
     {
-        Console.WriteLine(TREETOPNEO.Encryption.Rotate4Bit(0xffff));
+        var u = TREETOPNEO.Encryption.CascadeRotate16InUint(0b0101001100001111u);
+        Console.WriteLine("{0:B16}, {1:B16}", u, TREETOPNEO.Encryption.CascadeRotate16InUint(u));
 
         if (args.Contains("-c") || args.Contains("--clipboard"))
         {

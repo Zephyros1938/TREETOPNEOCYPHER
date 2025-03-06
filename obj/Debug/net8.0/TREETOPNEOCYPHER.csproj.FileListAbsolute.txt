@@ -12,3 +12,4 @@
 /home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.pdb
 /home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.genruntimeconfig.cache
 /home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/ref/TREETOPNEOCYPHER.dll
+/home/zephyros/Coding/CS/TREETOPNEOCYPHER/obj/Debug/net8.0/TREETOPNEOCYPHER.sourcelink.json
