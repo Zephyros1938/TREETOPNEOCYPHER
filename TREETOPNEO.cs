@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace TREETOPNEO;
 
@@ -51,11 +49,11 @@ public static class Encryption
         for (int i = 0; i < textBytes.Length; i++)
         {
             uint value = textBytes[i];
-            uint temp = (uint)(value ^ key ^ i ^ key2 ^ key3);
+            uint temp = (uint)(value ^ ~key ^ i ^ key2 ^ ~key3);
 
-            uint rotated = CascadeRotate16InUint(temp);
+            uint rotated = Rotate16Bit(temp);
 
-            operatedBytes[i] = (char)(rotated ^ key ^ i ^ key2 ^ key3);
+            operatedBytes[i] = (char)(temp ^ key ^ i ^ ~key2 ^ key3);
         }
         return operatedBytes;
     }
@@ -67,7 +65,7 @@ public static class Encryption
 
     public static uint Rotate16Bit4S(uint val)
     {
-        uint mask = 0xF0F0u;              // the bits we want to rotate
+        uint mask = 0xF0F0u;            // the bits we want to rotate
         uint notMask = ~mask;           // the bits we want to leave intact
 
         // Extract the bits we intend to rotate.
@@ -93,47 +91,6 @@ public static class Encryption
         return ((val << 2) | (val >> 2)) & 0xF;
     }
 
-    public static ushort CascadeRotate(ushort x)
-    {
-        // Stage 1: Swap the two bytes (rotate by 8 bits).
-        // This is an involution: doing it twice returns the original.
-        ushort swappedBytes = (ushort)(((x & 0x00FF) << 8) | ((x & 0xFF00) >> 8));
-
-        // Stage 2: For each 8-bit half, swap the nibbles (rotate by 4 bits).
-        // Process the high and low bytes independently.
-        byte high = (byte)((swappedBytes >> 8) & 0xFF);
-        byte low = (byte)(swappedBytes & 0xFF);
-        byte rotatedHigh = (byte)(((high << 4) | (high >> 4)) & 0xFF);
-        byte rotatedLow = (byte)(((low << 4) | (low >> 4)) & 0xFF);
-
-        ushort afterNibbleSwap = (ushort)((rotatedHigh << 8) | rotatedLow);
-
-        // Stage 3 (Optional): For each 4-bit nibble, swap its two 2-bit groups (rotate by 2 bits).
-        // There are 4 nibbles in a 16-bit number.
-        ushort result = 0;
-        for (int nibbleIndex = 0; nibbleIndex < 4; nibbleIndex++)
-        {
-            // Extract nibble
-            ushort nibble = (ushort)((afterNibbleSwap >> (nibbleIndex * 4)) & 0xF);
-            // Swap the two 2-bit groups in the nibble.
-            // (A 4-bit rotation by 2 is its own inverse.)
-            nibble = (ushort)(((nibble << 2) | (nibble >> 2)) & 0xF);
-            // Put the transformed nibble back into its place.
-            result |= (ushort)(nibble << (nibbleIndex * 4));
-        }
-
-        return result;
-    }
-
-    public static uint CascadeRotate16InUint(uint val)
-    {
-        // Constrain the input to 16 bits.
-        ushort lower16 = (ushort)(val & 0xFFFF);
-        ushort transformed = CascadeRotate(lower16);
-        // Reassemble, preserving any upper bits if needed.
-        return (val & 0xFFFF0000) | transformed;
-    }
-
 
 
     public static void GetKeyShift(string key, out uint keyShift, out uint keyShift2, out uint keyShift3)
@@ -141,11 +98,25 @@ public static class Encryption
         keyShift = 0;
         keyShift2 = 0;
         keyShift3 = 0;
-        foreach (char c in key.ToCharArray())
+        for (uint i = 0; i < key.Length; i++)
         {
-            keyShift += (ushort)c;
-            keyShift2 += (ushort)c | keyShift;
-            keyShift3 = keyShift3 & (keyShift | keyShift2!) ^ keyShift | keyShift3;
+            char c = key[(int)i];
+            if (i % 3 == 0)
+            {
+                keyShift += c;
+            }
+            else if (i % 3 == 1)
+            {
+                keyShift2 *= c;
+            }
+            else
+            {
+                keyShift3 ^= c;
+            }
+        }
+        if(key.Length%3!=1)
+        {
+
         }
     }
 }
@@ -183,56 +154,4 @@ public static class OperatingSystem
 
     public static bool IsLinux() =>
         RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
-}
-
-public static class Clipboard
-{
-    public static void Copy(string val)
-    {
-        if (OperatingSystem.IsWindows())
-        {
-            $"echo {val} | clip".Bat();
-        }
-
-        if (OperatingSystem.IsMacOS() || OperatingSystem.IsLinux())
-        {
-            $"echo \"{val}\" | pbcopy".Bash();
-        }
-    }
-}
-
-public static class Shell
-{
-    public static string Bash(this string cmd)
-    {
-        var escapedArgs = cmd.Replace("\"", "\\\"");
-        string result = Run("/bin/bash", $"-c \"{escapedArgs}\"");
-        return result;
-    }
-
-    public static string Bat(this string cmd)
-    {
-        var escapedArgs = cmd.Replace("\"", "\\\"");
-        string result = Run("cmd.exe", $"/c \"{escapedArgs}\"");
-        return result;
-    }
-
-    private static string Run(string filename, string arguments)
-    {
-        var process = new Process()
-        {
-            StartInfo = new ProcessStartInfo
-            {
-                FileName = filename,
-                Arguments = arguments,
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = false,
-            }
-        };
-        process.Start();
-        string result = process.StandardOutput.ReadToEnd();
-        process.WaitForExit();
-        return result;
-    }
 }

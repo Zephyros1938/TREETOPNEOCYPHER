@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net8.0/TREETOPNEOCYPHER.dll",
-            "args": ["-k", "1513521413", "-s", "TEST STRING FOR ENCRYPTION"],
+            "args": ["-k", "hHOW many times shAlL you make/this joke", "-s", "test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest test"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false
@@ -22,6 +22,17 @@
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/net8.0/TREETOPNEOCYPHER.dll",
             "args": ["-t"],
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Help Test",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net8.0/TREETOPNEOCYPHER.dll",
+            "args": ["-h"],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

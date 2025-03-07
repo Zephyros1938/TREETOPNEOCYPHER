@@ -7,8 +7,8 @@ public class Program
     static bool copyToClipBoard = false;
     public static int Main(string[] args)
     {
-        var u = TREETOPNEO.Encryption.CascadeRotate16InUint(0b0101001100001111u);
-        Console.WriteLine("{0:B16}, {1:B16}", u, TREETOPNEO.Encryption.CascadeRotate16InUint(u));
+        //var u = TREETOPNEO.Encryption.CascadeRotate16InUint(0b0101001100001111u);
+        //Console.WriteLine("{0:B16}, {1:B16}", u, TREETOPNEO.Encryption.CascadeRotate16InUint(u));
 
         if (args.Contains("-c") || args.Contains("--clipboard"))
         {
@@ -69,7 +69,8 @@ public class Program
             string encrypted = TREETOPNEO.Encryption.Encrypt(text, key);
             string decrypted = TREETOPNEO.Encryption.Decrypt(encrypted, key);
             byte[] encryptedBytes = Encoding.UTF8.GetBytes(encrypted);
-            Console.WriteLine($"ENCRYPTED DATA:\n\tENCR: {encrypted}\n\tDECR: {decrypted}\n\tBYTE: {string.Join("\\", encryptedBytes)}");
+            Console.WriteLine(key.Length%3);
+            Console.WriteLine($"ENCRYPTED DATA:\n\tENCR: {encrypted}\n\tDECR: {decrypted}\n\tBYTE: {string.Join("", encryptedBytes.Select(b => string.Format("{0:X2}", b)))}");
             return 0;
         }
         if (args.Contains("-t") || args.Contains("--test"))
@@ -84,8 +85,8 @@ public class Program
             }
             for (int i = 0; i < testCount; i++)
             {
-                string initString = TREETOPNEO.Rand.RandomString(25);
-                string key = TREETOPNEO.Rand.RandomString(25);
+                string initString = TREETOPNEO.Rand.RandomString(50);
+                string key = TREETOPNEO.Rand.RandomString(50);
                 string encrypted = TREETOPNEO.Encryption.Encrypt(initString, key);
                 string decrypted = TREETOPNEO.Encryption.Decrypt(encrypted, key);
                 Console.WriteLine($"{TREETOPNEO.SringOperations.PadBoth($" TEST No.{i + 1} ", 50)}\n\tKEY : {key}\n\tTEXT: {initString}\n\tENCR: {encrypted}\n\tDECR: {decrypted}");
@@ -119,16 +120,28 @@ SYNOPSIS
     TREETOPNEOCYPHER [OPTION] 
 
 DESCRIPTION
-    An application that is used by TREETOPNEO to encrypt their Twitter/X messages.
+    An application that is used by @TREETOPNEO to encrypt their Twitter/X messages.
+    May function incorrectly on Windows Powershell. It is recommended to use the Windows Command Prompt.
 
+OPTIONS
     -k, --key[=KEY]
-        provides the KEY value to the encryptor
+        Provides the KEY value to the encryptor.
     
     -s, --string[=STRING]
-        provides the STRING value to the encryptor
+        Provides the STRING value to the encryptor.
     
-    -t, --test
-        Automated test, checks for lossless decryption
+    -t, --test [COUNT]
+        Automated test, checks for lossless decryption. Optionally specify the number of tests (default is 10).
+    
+    -h, --help
+        Displays this help message.
+
+EXAMPLES
+    TREETOPNEOCYPHER -k mykey -s "Hello World"
+        Encrypts the string "Hello World" using the key "mykey".
+
+    TREETOPNEOCYPHER -t 5
+        Runs 5 automated tests to check for lossless decryption.
 """);
     }
 }

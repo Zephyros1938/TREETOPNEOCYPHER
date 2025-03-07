@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "A4gtSGRranbLgo90zuG2oY5lMJAkyINkjk+xT5GzMqbXLDtHT2AylrwJQG/BZj/jv19Dx3YDrf0wiR4u34TwJA==",
+  "dgSpecHash": "aD8xO9gYqNk=",
   "success": true,
-  "projectFilePath": "/home/zephyros/Coding/CS/TREETOPNEOCYPHER/TREETOPNEOCYPHER.csproj",
+  "projectFilePath": "E:\\Coding\\CSHARP\\TREETOPNEOCYPHER\\TREETOPNEOCYPHER.csproj",
   "expectedPackageFiles": [
-    "/home/zephyros/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.12/microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512"
+    "C:\\Users\\james\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.8\\microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
+    "C:\\Users\\james\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.8\\microsoft.netcore.app.runtime.win-x64.8.0.8.nupkg.sha512",
+    "C:\\Users\\james\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.8\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.8.nupkg.sha512",
+    "C:\\Users\\james\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.8\\microsoft.aspnetcore.app.runtime.win-x64.8.0.8.nupkg.sha512"
   ],
   "logs": []
 }
